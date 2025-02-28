@@ -182,7 +182,7 @@ Node* inputList(){
     std::string input = "";
     std::vector<bool> elements = {};
     std::cout<<"Введите значения типа bool: "<<std::endl;
-    while (true) //Цикл ввода елементов списка
+    while (true) //Цикл ввода элементов списка
     {
         getline(std::cin, input);
         if(input == "") break;
