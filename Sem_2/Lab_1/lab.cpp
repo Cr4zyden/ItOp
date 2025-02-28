@@ -1,5 +1,6 @@
 #include <iostream>
-
+#include <vector>
+#include <string>
 // Определяем структуру узла двусвязного циклического списка
 struct Node {
     bool data;
@@ -26,6 +27,8 @@ void append(Node*& head, bool value) {
 
 // Функция для вывода списка
 void printList(Node* head) {
+    std::cout << "Список: ";
+
     if (head == nullptr) {
         std::cout << "Список пуст." << std::endl;
         return;
@@ -173,18 +176,60 @@ Node* mergeLists(Node* list1, Node* list2) {
 
     return list1; // Возвращаем голову объединенного списка
 }
+//Функция ручного ввода значений для списка
+Node* inputList(){
+    Node* returnList = nullptr; //Создаем новый список
+    std::string input = "";
+    std::vector<bool> elements = {};
+    std::cout<<"Введите значения типа bool: "<<std::endl;
+    while (true) //Цикл ввода елементов списка
+    {
+        getline(std::cin, input);
+        if(input == "") break;
+        if(input.size() == 1 and (input[0] == '1' or input[0] == '0')){
+            switch (input[0])
+            {case '1':
+                elements.push_back(true);
+                break;
+            
+             case '0':
+                elements.push_back(false);    
+                break;}
+        }else{
+            std::cout<<"Некоретный ввод, введите 1 символ: 0 или 1"<<std::endl;
+        }        
+    }
+
+    for(bool elem: elements){
+        append(returnList, elem);
+    }return returnList;
+    
+}
 
 int main() {
     // Переменная p — это голова двусвязного циклического списка
     Node* p = nullptr;
+    std::cout<<"Ввведите список 1: "<<std::endl;
+    Node* list1 = inputList();
+    // std::cout<<"Ввведите список 2: "<<std::endl;
+    // Node* list2 = inputList();
+    // Node* list3 = mergeLists(list1, list2);
+    bool inp;
+    std::cout<<"Введите элемент, который нужно удалить: "<<std::endl;
+    std::cin>>inp;
+    remove(list1, inp);
+    printList(list1);
 
+
+
+
+    //Node* input_list = inputList(); 
+    //printList(input_list);
     // Добавляем элементы в список
     append(p, true);  
     append(p, false); 
-
     // Выводим список
-    std::cout << "Список p: ";
-    printList(p);
+    //printList(p);
 
     // Освобождаем память
     deleteList(p);
