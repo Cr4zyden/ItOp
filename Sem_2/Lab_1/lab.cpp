@@ -196,7 +196,7 @@ Node* inputList(){
                 elements.push_back(false);    
                 break;}
         }else{
-            std::cout<<"Некоретный ввод, введите 1 символ: 0 или 1"<<std::endl;
+            std::cout<<"Некоретный ввод"<<std::endl<<"введите 1 символ: 0 или 1"<<std::endl;
         }        
     }
 
@@ -211,17 +211,11 @@ int main() {
     Node* p = nullptr;
     std::cout<<"Ввведите список 1: "<<std::endl;
     Node* list1 = inputList();
-    // std::cout<<"Ввведите список 2: "<<std::endl;
-    // Node* list2 = inputList();
-    // Node* list3 = mergeLists(list1, list2);
-    bool inp;
-    std::cout<<"Введите элемент, который нужно удалить: "<<std::endl;
-    std::cin>>inp;
-    remove(list1, inp);
-    printList(list1);
-
-
-
+    // bool inp;
+    // std::cout<<"Введите значение нового элемента: "<<std::endl;
+    // std::cin>>inp;
+    // append(list1, inp);
+    // printList(list1);
 
     //Node* input_list = inputList(); 
     //printList(input_list);
