@@ -6,7 +6,7 @@ struct TreeNode {
     TreeNode* left; // Указатель на левого потомка
     TreeNode* right; // Указатель на правого потомка
 
-    // Конструктор для удобства создания узлов
+    
     TreeNode(int val) : value(val), left(nullptr), right(nullptr) {}
 };
 
@@ -15,7 +15,6 @@ struct StackNode {
     TreeNode* node; // Указатель на узел дерева
     StackNode* next; // Указатель на следующий узел
 
-    // Конструктор для удобства создания узлов
     StackNode(TreeNode* n) : node(n), next(nullptr) {}
 };
 
@@ -27,8 +26,8 @@ bool isEmpty(StackNode* topNode) {
 // Функция для добавления элемента в стек
 void push(StackNode** topNode, TreeNode* node) {
     StackNode* newNode = new StackNode(node);
-    newNode->next = *topNode; // Новый узел указывает на текущую вершину
-    *topNode = newNode; // Обновляем вершину стека
+    newNode->next = *topNode; 
+    *topNode = newNode; 
 }
 
 // Функция для удаления элемента из стека
@@ -37,16 +36,16 @@ void pop(StackNode** topNode) {
         std::cerr << "Ошибка: попытка удалить элемент из пустого стека!" << std::endl;
         return;
     }
-    StackNode* temp = *topNode; // Сохраняем текущую вершину
-    *topNode = (*topNode)->next; // Перемещаем вершину на следующий узел
-    delete temp; // Освобождаем память
+    StackNode* temp = *topNode; 
+    *topNode = (*topNode)->next; 
+    delete temp; 
 }
 
 // Функция для получения значения верхнего элемента стека
 TreeNode* top(StackNode* topNode) {
     if (isEmpty(topNode)) {
         std::cerr << "Ошибка: попытка получить значение из пустого стека!" << std::endl;
-        return nullptr; // Возвращаем nullptr как ошибочное значение
+        return nullptr; 
     }
     return topNode->node;
 }
@@ -69,7 +68,7 @@ TreeNode* insertIntoBST(TreeNode* root, int value) {
 // Функция для поиска минимального значения в бинарном дереве с использованием стека
 int findMinimumValue(TreeNode* root) {
     if (!root) {
-        return 0; // Если дерево пустое, возвращаем 0 (можно изменить на другое значение)
+        return 0; // Если дерево пустое, возвращаем 0 
     }
 
     // Инициализация стека для обхода в глубину
@@ -79,7 +78,6 @@ int findMinimumValue(TreeNode* root) {
     // Переменная для хранения минимального значения
     int minValue = root->value;
 
-    // Обход дерева в глубину с использованием стека
     while (!isEmpty(stackTop)) {
         TreeNode* current = top(stackTop); // Получаем указатель на текущий узел
         pop(&stackTop); // Удаляем вершину стека
@@ -101,23 +99,18 @@ int findMinimumValue(TreeNode* root) {
     return minValue;
 }
 
-// Пример использования
 int main() {
     std::cout << "Введите числа через пробел (для завершения введите 0): ";
 
     TreeNode* root = nullptr;
     int value;
 
-    // Считываем числа до тех пор, пока не будет введен 0
     while (std::cin >> value && value != 0) {
         root = insertIntoBST(root, value);
     }
 
-    // Поиск минимального значения
     int minValue = findMinimumValue(root);
     std::cout << "Минимальное значение в дереве: " << minValue << std::endl;
 
-    // Освобождение памяти (опционально, если не используется умный указатель)
-    // Здесь нужно реализовать рекурсивное удаление дерева
     return 0;
 }
