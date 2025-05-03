@@ -6,7 +6,6 @@ struct TreeNode {
     TreeNode* left; // Указатель на левого потомка
     TreeNode* right; // Указатель на правого потомка
 
-    
     TreeNode(int val) : value(val), left(nullptr), right(nullptr) {}
 };
 
@@ -100,7 +99,7 @@ int findMinimumValue(TreeNode* root) {
 }
 
 int main() {
-    std::cout << "Введите числа через пробел (для завершения введите 0): ";
+    std::cout << "Введите числа через пробел (для завершения введите 0): \n";
 
     TreeNode* root = nullptr;
     int value;
