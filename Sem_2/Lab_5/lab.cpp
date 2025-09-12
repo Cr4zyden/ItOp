@@ -17,12 +17,11 @@ struct Element2 {
 };
 
 // === Функции ввода с проверками ===
-
 string getKey15() {
     string key;
     do {
         cout << "Ключ (до 15 символов): ";
-        cin >> ws; // пропустить пробелы/переводы
+        cin >> ws;
         getline(cin, key);
         if (key.length() > 15)
             cout << "Ошибка: ключ не должен превышать 15 символов.\n";
@@ -95,7 +94,7 @@ void insertionSortTask1(vector<Element1>& table) {
     cout << "Число перемещений: " << movements << endl;
 }
 
-// === Вспомогательная функция слияния (общая для всех методов слиянием) ===
+// === Слияние двух частей (общая функция для всех методов слиянием) ===
 template<typename T>
 void merge(vector<T>& arr, int left, int mid, int right, int& comp, int& move) {
     vector<T> leftArr(arr.begin() + left, arr.begin() + mid + 1);
@@ -104,7 +103,7 @@ void merge(vector<T>& arr, int left, int mid, int right, int& comp, int& move) {
     int i = 0, j = 0, k = left;
 
     while (i < leftArr.size() && j < rightArr.size()) {
-        if (++comp && leftArr[i].value <= rightArr[j].value)
+        if (++comp && leftArr[i].key <= rightArr[j].key) // Сортировка по ключу!
             arr[k++] = leftArr[i++];
         else
             arr[k++] = rightArr[j++];
@@ -121,7 +120,7 @@ void merge(vector<T>& arr, int left, int mid, int right, int& comp, int& move) {
     }
 }
 
-// === Сортировка слиянием (рекурсивная) ===
+// === Рекурсивная сортировка слиянием ===
 template<typename T>
 void mergeSort(vector<T>& arr, int left, int right, int& comp, int& move) {
     if (left >= right) return;
@@ -134,7 +133,6 @@ void mergeSort(vector<T>& arr, int left, int right, int& comp, int& move) {
     merge(arr, left, mid, right, comp, move);
 }
 
-// === Обёртки для вызова сортировки слиянием ===
 void mergeSortTask1(vector<Element1>& table) {
     int comp = 0, move = 0;
     mergeSort(table, 0, table.size() - 1, comp, move);
